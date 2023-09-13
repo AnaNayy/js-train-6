@@ -19,6 +19,7 @@ let personLarge = {
   address: {
     street: "123 Main St",
     city: "New York",
+    country: "USA",
   },
 };
 
@@ -43,7 +44,8 @@ function copyObject(obj) {
   // Використовуємо синтаксис деструктурізації {...person}
   // для створення нового об'єкта з тими ж властивостями
   // Повертаємо новий об'єкт
-  let copiedAnimal = { ...animal };
+  let copiedAnimal = { ...obj };
+  //let copiedAnimal = { ...animal };
   return copiedAnimal;
 }
 
@@ -102,7 +104,8 @@ let movie = {
 function deleteProperty(obj, property) {
   // Використовуємо оператор "delete" для видалення властивості
   // Повертаємо об'єкт
-  delete obj.property;
+  //delete obj.property;
+  delete obj[property];
   return obj;
 }
 
@@ -210,7 +213,8 @@ function printProductDetails(obj) {
     price,
     manufacturer: { companyName, country },
   } = obj;
-  console.log(`${productName} ${price} ${companyName} ${country}`);
+  //console.log(`${productName} ${price} ${companyName} ${country}`);
+  console.log(productName, price, companyName, country);
 }
 
 console.log("Завдання 11 ====================================");
@@ -266,11 +270,15 @@ console.log(showCarInfo(car)); // Виведе { brand: 'BMW', year: 2022, count
 function addProperty(array) {
   // Додаємо нову властивість customProperty до прототипу Array зі значенням myProperty
   // Повертаємо переданий масив з новою властивістю
+  Array.prototype.customProperty = "myProperty";
+
+  // Повертаємо переданий масив з новою властивістю
+  return array;
 }
 
 console.log("Завдання 14 ====================================");
 // Створимо масив newArr з новою властивістю за допомогої нашої функції в яку
 //передамо[1, 2, 3, 4, 5]
-
+let newArr = addProperty([1, 2, 3, 4, 5]);
 // Розкоментуйте рядок нижче після виконня завдання для перевірки
-// console.log(newArr.customProperty); // Виведе myProperty
+console.log(newArr.customProperty); // Виведе myProperty
